@@ -1,45 +1,31 @@
+// packages:
 const express = require("express");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
+// routes:
+const userRouter = require("./src/routes/User");
 
 const app = express();
-
-const UserData = new mongoose.model("UserData", {
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+app.use("/user", userRouter);
 
 
+// default route:
 app.get("/", (req, res) => {
   res.json({
     message: "Server is live",
+    date: new Date(),
   });
 });
 
+// health route:
 app.get("/health", (req, res) => {
   res.json({
     message: "API is healthy",
-  });
-});
-
-// get User data from server
-app.get("/user", async (req, res) => {
-  const users = await UserData.find();
-
-  res.json({
-    message: "User data list",
-    users: users,
+    date: new Date(),
   });
 });
 

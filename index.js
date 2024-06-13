@@ -7,10 +7,14 @@ const bodyParser = require("body-parser");
 // routes:
 const userRouter = require("./src/routes/User");
 
+// middlewares:
+const errorHandler = require("./src/middleware/errorHandler");
+
 const app = express();
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use("/user", userRouter);
+app.use(errorHandler);
 
 
 // default route:
@@ -25,6 +29,14 @@ app.get("/", (req, res) => {
 app.get("/health", (req, res) => {
   res.json({
     message: "API is healthy",
+    date: new Date(),
+  });
+});
+
+// Invalid Page
+app.get("*", (req, res) => {
+  res.status(404).json({
+    message: "Invalid Page",
     date: new Date(),
   });
 });

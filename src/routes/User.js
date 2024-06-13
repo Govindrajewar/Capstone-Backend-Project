@@ -9,7 +9,7 @@ const {
 } = require("../controllers/User");
 
 // get user route
-router.post("/", getUsers);
+router.get("/", getUsers);
 
 // register route
 router.post("/register", registerUser);

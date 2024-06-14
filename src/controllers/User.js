@@ -11,7 +11,10 @@ const getUsers = async (req, res, next) => {
       user: users,
     });
   } catch (error) {
-    next("Get Users Error: ", error);
+    res.json({
+      message: "Get Users Error: ",
+      error: error,
+    });
   }
 };
 
@@ -38,7 +41,10 @@ const registerUser = async (req, res, next) => {
       message: "User Registered Successfully",
     });
   } catch (error) {
-    next("Register User Error: ", error);
+    res.json({
+      message: "Register User Error: ",
+      error: error,
+    });
   }
 };
 
@@ -75,7 +81,10 @@ const loginUser = async (req, res) => {
       token: token,
     });
   } catch (error) {
-    next("Login User Error: ", error);
+    res.json({
+      message: "Login User Error: ",
+      error: error,
+    });
   }
 };
 

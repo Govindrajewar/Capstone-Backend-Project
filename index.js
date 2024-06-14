@@ -6,14 +6,15 @@ const bodyParser = require("body-parser");
 
 // routes:
 const userRouter = require("./src/routes/User");
+const jobRouter = require("./src/routes/Job");
 
 // middlewares:
 const errorHandler = require("./src/middleware/errorHandler");
 
 const app = express();
-app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 app.use("/user", userRouter);
+app.use("/job", jobRouter);
 app.use(errorHandler);
 
 

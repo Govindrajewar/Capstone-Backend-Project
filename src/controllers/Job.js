@@ -40,13 +40,14 @@ const getJobById = async (req, res) => {
 
 const createJob = async (req, res) => {
   try {
-    const { companyName, jobTitle, location, salary } = req.body;
+    const { companyName, jobTitle, location, salary, skills } = req.body;
 
     const newJob = new JobData({
       companyName,
       jobTitle,
       location,
       salary,
+      skills,
     });
 
     await newJob.save();
@@ -66,7 +67,7 @@ const createJob = async (req, res) => {
 // Update job
 const updateJob = async (req, res) => {
   try {
-    const { companyName, jobTitle, location, salary } = req.body;
+    const { companyName, jobTitle, location, salary, skills } = req.body;
 
     const updatedJob = await JobData.findOneAndUpdate(
       { _id: req.params.id },
@@ -75,6 +76,7 @@ const updateJob = async (req, res) => {
         jobTitle,
         location,
         salary,
+        skills,
       }
     );
 

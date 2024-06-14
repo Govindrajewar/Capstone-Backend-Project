@@ -17,6 +17,9 @@ const JobData = new mongoose.model("JobData", {
     type: String,
     required: true,
   },
+    skills: [{
+      type: String,
+    }]
 });
 
 module.exports = JobData;

@@ -73,7 +73,7 @@ const loginUser = async (req, res) => {
         name: existingUser.name,
       },
       process.env.TokenKey,
-      { expiresIn: "1h" }
+      { expiresIn: "1d" }
     );
 
     res.status(200).json({

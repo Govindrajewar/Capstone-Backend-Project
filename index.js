@@ -10,11 +10,12 @@ const jobRouter = require("./src/routes/Job");
 
 // middlewares:
 const errorHandler = require("./src/middleware/errorHandler");
+const verifyToken = require("./src/middleware/verifyToken");
 
 const app = express();
 app.use(bodyParser.json());
 app.use("/user", userRouter);
-app.use("/job", jobRouter);
+app.use("/job", verifyToken, jobRouter);
 app.use(errorHandler);
 
 

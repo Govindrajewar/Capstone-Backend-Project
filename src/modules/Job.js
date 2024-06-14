@@ -12,7 +12,6 @@ const JobData = new mongoose.model("JobData", {
   location: {
     type: String,
     required: true,
-    unique: true,
   },
   salary: {
     type: String,

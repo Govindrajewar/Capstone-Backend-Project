@@ -20,12 +20,6 @@ const createJob = async (req, res) => {
   try {
     const { companyName, jobTitle, location, salary } = req.body;
 
-    if (!companyName || !jobTitle || !location || !salary) {
-      return res.status(400).json({
-        message: "All fields are required",
-      });
-    }
-
     const newJob = new JobData({
       companyName,
       jobTitle,

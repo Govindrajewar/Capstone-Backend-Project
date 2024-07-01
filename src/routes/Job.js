@@ -7,6 +7,7 @@ const {
     createJob,
     getJobById,
     updateJob,
+    deleteJob,
 } = require("../controllers/Job");
 
 // middlewares:
@@ -23,6 +24,9 @@ router.post("/create", validateNewJob, createJob);
 
 // update Job
 router.patch("/update/:id", updateJob);
+
+// delete Job
+router.delete("/delete/:id", deleteJob);
 
 // export router
 module.exports = router;

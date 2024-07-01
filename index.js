@@ -38,7 +38,7 @@ app.get("/health", (req, res) => {
 // Invalid Page
 app.get("*", (req, res) => {
   res.status(404).json({
-    message: "Invalid Page",
+    message: "This Page is not available",
     date: new Date(),
   });
 });

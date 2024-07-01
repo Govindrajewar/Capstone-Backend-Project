@@ -1,5 +1,6 @@
 const JobData = require("../modules/Job");
 
+// get all jobs
 const getJob = async (req, res) => {
   try {
     const jobs = await JobData.find();
@@ -16,6 +17,7 @@ const getJob = async (req, res) => {
   }
 };
 
+// get job by id
 const getJobById = async (req, res) => {
   try {
     const job = await JobData.findOne({ _id: req.params.id });
@@ -38,6 +40,7 @@ const getJobById = async (req, res) => {
   }
 };
 
+// create job
 const createJob = async (req, res) => {
   try {
     const { companyName, jobTitle, location, salary, skills } = req.body;
@@ -92,9 +95,33 @@ const updateJob = async (req, res) => {
   }
 };
 
+// TODO: Job is deleting but response in not displayed in Console of Postman
+// delete job
+const deleteJob = async (req, res) => {
+  try {
+    const jobID = req.params.id;
+    const deletedJob = await JobData.findOneAndDelete(jobID);
+
+    if (!deletedJob) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    res.status(204).json({
+      message: "Job deleted successfully",
+      deletedJob: deletedJob
+     });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong while deleting job",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   getJob,
   createJob,
   getJobById,
   updateJob,
+  deleteJob,
 };
